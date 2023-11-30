@@ -8,7 +8,7 @@ I was wondering, could we use this model for object detection?
 
     "Identify the dog in the picture"
 
-![Detect Dog](assets/example.png)
+<img src="assets/example.png" width="60%">
 
 **How do LLMs compare to a specialized object detection algorithm?**
 
