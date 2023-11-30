@@ -39,7 +39,11 @@ def ask_gpt4_vision(system_instrutions, question, image_path):
         json_str = content.strip('`json\n') # Extract the JSON part from the string (remove the ```json and ``` at both ends)
         coordinates = json.loads(json_str) # Convert the JSON string into a Python dictionary
 
+        print('-' * 50)
+        print("Question:", question)
         print("Details:", coordinates["details"])
+        print(f"Coordinates: [{coordinates['x']}, {coordinates['y']}]")
+        print('-' * 50)
 
     except Exception as e:
         print(e)
