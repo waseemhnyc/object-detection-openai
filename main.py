@@ -9,7 +9,7 @@ load_dotenv()
 client = OpenAI()
 
 
-def ask_gpt4_vision(system_instrutions, question, image_path):
+def ask_gpt4_vision(system_instrutions, object_to_detect, image_path):
     base64_image = encode_image(image_path)
 
     try:
@@ -24,7 +24,7 @@ def ask_gpt4_vision(system_instrutions, question, image_path):
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": question},
+                        {"type": "text", "text": f"Detect: {object_to_detect}"},
                         {
                             "type": "image_url",
                             "image_url": {
@@ -40,7 +40,7 @@ def ask_gpt4_vision(system_instrutions, question, image_path):
         coordinates = json.loads(json_str) # Convert the JSON string into a Python dictionary
 
         print('-' * 50)
-        print("Question:", question)
+        print("Detect:", object_to_detect)
         print("Details:", coordinates["details"])
         print(f"Coordinates: [{coordinates['x']}, {coordinates['y']}]")
         print('-' * 50)
@@ -76,7 +76,7 @@ Please adhere strictly to this output structure:
 Note: Do not include any additional data or keys outside of what has been specified.
 """
 
-question = "Detect Dog"
+detect = "dogs nose"
 
-coordinates = ask_gpt4_vision(system_instructions, question, image_path)
+coordinates = ask_gpt4_vision(system_instructions, detect, image_path)
 draw_circle(image_path, coordinates)
