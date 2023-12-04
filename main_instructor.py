@@ -3,6 +3,7 @@ import instructor
 from instructor import Mode
 from openai import OpenAI
 from pydantic import BaseModel, Field
+from pprint import pprint
 
 from dotenv import load_dotenv
 
@@ -49,14 +50,15 @@ def ask_gpt4_vision(system_instrutions, question, image_path):
             }
         ],
     )
-    print(detected.model_dump_json())
+    pprint(detected.model_dump_json())
     return {"x": detected.x, "y": detected.y}
 
-image_path = "assets/kitten-and-puppy.webp"
+# image_path = "assets/kitten-and-puppy.webp"
 # image_path = "assets/puppy.jpg"
+image_path = "assets/fire.png"
 
 system_instructions = """You are an image recognition expert."""
 
-question = "Detect Cat"
+question = "Detect Fire"
 coordinates = ask_gpt4_vision(system_instructions, question, image_path)
 draw_circle(image_path, coordinates)
